@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-ID_PREFIX="io.buildpacks.samples.stacks"
+ID_PREFIX="io.buildpacks.stacks.kubedrop"
 
-DEFAULT_PREFIX=srijanlabs/drupal
+DEFAULT_PREFIX=kubedrop/drupal
 
 REPO_PREFIX=${DEFAULT_PREFIX}
 

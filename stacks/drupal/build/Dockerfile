@@ -5,8 +5,8 @@ ARG stack_id
 WORKDIR /workspace
 
 # non-zero sets all user-owned directories to BUILTIN\Users
-ARG cnb_uid=1
-ARG cnb_gid=1
+ARG cnb_uid=1000
+ARG cnb_gid=1000
 
 ENV CNB_USER_ID=${cnb_uid}
 ENV CNB_GROUP_ID=${cnb_gid}
