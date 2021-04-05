@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+echo "---> Drupal Buildpack"
+# 1. GET ARGS
+layersdir=$1
+
+# Install composer packages
+echo "---> Install php packages"
+composer install --no-dev --prefer-dist --no-progress --no-suggest --no-interaction --optimize-autoloader
+
+if [[ -f package.json ]]; then
+    npm install
+else
+    paths=`cat composer.json | jq -r '.extra["installer-paths"] | to_entries | map(select(.value[0]=="type:drupal-custom-theme" or .value[0] =="type:drupal-theme"))[].key'`;
+    paths=($paths)
+    for key in "${!paths[@]}"
+    do
+        path=`echo ${paths[$key]} | sed -e 's/docroot/./g' | sed -e 's/\/{$name}//g'`
+        if [[ -d $path ]]; then
+            isfound=`find $path -name package.json`
+            isfound=($isfound)
+            for key in "${!isfound[@]}"
+            do
+                single_dir=${isfound[$key]}
+                if [[ -f $single_dir && ${single_dir} != *"node_modules"* ]]; then
+                    path=`echo ${single_dir} | sed -e 's/package.json//g'`
+                    npm install --prefix $path
+                fi
+            done
+        fi
+    done
+fi
+
+
+# SET DEFAULT START COMMAND
+cat > "$layersdir/launch.toml" <<EOL
+[[processes]]
+type = "web"
+command = "start.sh"
+EOL
