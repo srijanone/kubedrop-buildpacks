@@ -1,0 +1,17 @@
+# Buildpacks to include in the builder.
+[[buildpacks]]
+id = "kubedrop.io/drupal-node"
+version = "0.0.1"
+uri = "../../buildpacks/drupal-node"
+
+# Order
+[[order]]
+[[order.group]]
+id = "kubedrop.io/drupal-node"
+version = "0.0.1"
+
+# Stack that will be used by the builder.
+[stack]
+id = "io.buildpacks.stacks.kubedrop.drupal-node"
+run-image = "kubedrop/drupal-run:drupal-node"
+build-image = "kubedrop/drupal-build:drupal-node"
