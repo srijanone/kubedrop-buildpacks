@@ -1,4 +1,4 @@
-FROM srijanlabs/php-fpm-apache-node:7.3-buster
+FROM srijanlabs/php-fpm-apache:7.4-buster
 
 ARG stack_id
 

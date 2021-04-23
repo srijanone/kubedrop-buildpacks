@@ -1,4 +1,4 @@
-FROM srijanlabs/php-node-cli:7.3-buster
+FROM srijanlabs/php-cli-npm:7.4-buster
 
 ARG stack_id
 
