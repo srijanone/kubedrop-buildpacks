@@ -4,7 +4,7 @@ ARG stack_id
 
 WORKDIR /workspace
 
-ENV DOC_ROOT="/workspace/web"
+ENV DOC_ROOT="/workspace/docroot"
 
 # non-zero sets all user-owned directories to BUILTIN\Users
 ARG cnb_uid=1000

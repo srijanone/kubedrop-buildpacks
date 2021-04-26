@@ -5,30 +5,3 @@ set -eo pipefail
 if [[ ! -f composer.json ]]; then
    exit 100
 fi
-# else
-#   count=0
-#   if [[ -f package.json ]]; then
-#     ((count++))
-#   else
-#   paths=`cat composer.json | jq -r '.extra["installer-paths"] | to_entries | map(select(.value[0]=="type:drupal-custom-theme" or .value[0] =="type:drupal-theme"))[].key'`;
-#   paths=($paths)
-#   for key in "${!paths[@]}"
-#   do
-#     path=`echo ${paths[$key]} | sed -e 's/docroot/./g' | sed -e 's/\/{$name}//g'`
-#     if [[ -d $path ]]; then
-#       isfound=`find $path -name package.json`
-#       isfound=($isfound)
-#       for key in "${!isfound[@]}"
-#         do
-#           single_dir=${isfound[$key]}
-#           if [[ -f $single_dir && ${single_dir} != *"node_modules"* ]]; then
-#             ((count++))
-#           fi
-#         done
-#     fi
-#   done
-#   fi
-#   if [[ $count == 0 ]]; then
-#     exit 100
-#   fi
-# fi
