@@ -15,10 +15,10 @@ composer install --no-dev --prefer-dist --no-progress --no-suggest --no-interact
 
 echo "---> Build theme..."
 cd ${THEME_PATH}
-if [[ ! -f package.json ]]; then
+if [[ -f package.json ]]; then
     npm install cross-env
     npm install gulp
-    npm install --only=prod && npm run setup && npm run build:drupal
+    npm install && npm run setup && npm run build:drupal
 fi
 
 # SET DEFAULT START COMMAND
